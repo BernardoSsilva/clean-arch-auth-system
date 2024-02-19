@@ -1,3 +1,5 @@
+import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
+
 export class UserLogin{
     private readonly loginValue: string;
 
@@ -11,7 +13,7 @@ export class UserLogin{
     constructor(loginValue){
         const loginValueIsValid = this.validateValue(loginValue)
         if(!loginValueIsValid){
-            throw new Error("Invalid login value")
+            throw new InvalidFieldError("Invalid login value")
         }
 
         this.loginValue = loginValue

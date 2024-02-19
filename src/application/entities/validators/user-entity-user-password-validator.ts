@@ -1,3 +1,5 @@
+import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
+
 export class UserPassword {
   private readonly passwordValue: string;
 
@@ -15,7 +17,7 @@ export class UserPassword {
   constructor(passwordValue: string) {
     const passwordValueIsValid = this.validatePassword(passwordValue);
     if (!passwordValueIsValid) {
-      throw new Error('Invalid password ');
+      throw new InvalidFieldError('Invalid password ');
     }
 
     this.passwordValue = passwordValue;

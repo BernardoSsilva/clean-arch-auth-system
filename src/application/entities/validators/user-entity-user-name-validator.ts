@@ -1,3 +1,5 @@
+import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
+
 export class UserName {
   private readonly value: string;
 
@@ -11,7 +13,7 @@ export class UserName {
   constructor(value: string) {
     const nameValueIsValid = this.validateValue(value);
     if(!nameValueIsValid){
-        throw new Error('Invalid user name');
+        throw new InvalidFieldError('Invalid user name');
     }
     this.value = value
   }

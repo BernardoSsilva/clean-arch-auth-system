@@ -1,3 +1,5 @@
+import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
+
 export class UserEmail {
   private readonly emailValue: string;
 
@@ -16,7 +18,7 @@ export class UserEmail {
     const emailValueIsValid = this.validateEmail(emailValue);
 
     if (!emailValueIsValid) {
-      throw new Error('invalid email');
+      throw new InvalidFieldError('invalid email');
     }
 
     this.emailValue = emailValue;
