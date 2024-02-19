@@ -1,8 +1,7 @@
-
-import { UserName } from './validators/user-entity-user-name-validator';
-import { UserLogin } from './validators/user-entity-user-login-validator';
-import { UserEmail } from './validators/user-entity-user-email-validator';
-import { UserPassword } from './validators/user-entity-user-password-validator';
+import { UserName } from './Value-Objects/user-entity-user-name';
+import { UserLogin } from './Value-Objects/user-entity-user-login';
+import { UserEmail } from './Value-Objects/user-entity-user-email';
+import { UserPassword } from './Value-Objects/user-entity-user-password';
 import { Entity } from '../../shared/entities/entity';
 
 export type UserProps = {
