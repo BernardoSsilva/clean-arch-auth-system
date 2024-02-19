@@ -1,18 +1,22 @@
 import { Entity } from 'src/shared/entities/entity';
+import { UserName } from './validators/user-entity-user-name-validator';
+import { UserLogin } from './validators/user-entity-user-login-validator';
+import { UserEmail } from './validators/user-entity-user-email-validator';
+import { UserPassword } from './validators/user-entity-user-password-validator';
 
 export type UserProps = {
-  userName: string;
-  userLogin: string;
-  userEmail: string;
-  userPassword: string;
-  createdAt?: Date | null;
+  userName: UserName;
+  userLogin: UserLogin;
+  userEmail: UserEmail;
+  userPassword: UserPassword;
+  createdAt: Date | null;
 };
 export class UserEntity extends Entity<UserProps> {
   set _userName(content) {
     this.props.userName = content;
   }
 
-  get _useName(): string {
+  get _useName(): UserName {
     return this.props.userName;
   }
 
@@ -20,7 +24,7 @@ export class UserEntity extends Entity<UserProps> {
     this.props.userLogin = content;
   }
 
-  get _userLogin(): string {
+  get _userLogin(): UserLogin {
     return this.props.userLogin;
   }
 
@@ -28,7 +32,7 @@ export class UserEntity extends Entity<UserProps> {
     this.props.userEmail = content;
   }
 
-  get _userEmail(): string {
+  get _userEmail(): UserEmail {
     return this.props.userEmail;
   }
 
@@ -36,12 +40,8 @@ export class UserEntity extends Entity<UserProps> {
     this.props.userPassword = content;
   }
 
-  get _userPassword(): string {
+  get _userPassword(): UserPassword {
     return this.props.userPassword;
-  }
-
-  set _createdAt(content) {
-    this.props.createdAt = content;
   }
 
   get _createdAt(): Date {
