@@ -5,7 +5,7 @@ export class UserName {
     return this.value
   }
   private validateValue(value: string): boolean {
-    return value.length > 0 && typeof value === 'string'&& value !== null;
+    return value !== null&&value.length > 0 && typeof value === 'string';
   }
 
   constructor(value: string) {

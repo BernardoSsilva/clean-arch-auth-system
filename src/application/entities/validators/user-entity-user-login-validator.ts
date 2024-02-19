@@ -5,7 +5,7 @@ export class UserLogin{
         return this.loginValue
     }
     private validateValue(loginValue:string):boolean{
-        return loginValue.length >= 5 &&typeof loginValue ==="string"&& loginValue !== null
+        return loginValue !== null&&loginValue.length >= 5 &&typeof loginValue ==="string"
     }
 
     constructor(loginValue){

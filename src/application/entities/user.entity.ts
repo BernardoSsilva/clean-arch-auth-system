@@ -1,8 +1,9 @@
-import { Entity } from 'src/shared/entities/entity';
+
 import { UserName } from './validators/user-entity-user-name-validator';
 import { UserLogin } from './validators/user-entity-user-login-validator';
 import { UserEmail } from './validators/user-entity-user-email-validator';
 import { UserPassword } from './validators/user-entity-user-password-validator';
+import { Entity } from '../../shared/entities/entity';
 
 export type UserProps = {
   userName: UserName;
