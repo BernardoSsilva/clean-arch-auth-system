@@ -1,10 +1,7 @@
-import { UserLogin } from '../entities/Value-Objects/user-entity-user-login';
-import { UserEmail } from './../entities/Value-Objects/user-entity-user-email';
-import { UserEntity } from '../entities/user.entity';
-import { UserName } from '../entities/Value-Objects/user-entity-user-name';
-import { UserPassword } from '../entities/Value-Objects/user-entity-user-password';
-import { UserRepository } from '../repositories/user.repository';
+
 import { Injectable } from '@nestjs/common';
+import { UserEntity } from '../entities/user.entity';
+import { UserRepository } from '../repositories/user.repository';
 
 export interface createUserInterface {
   userEmail: string;
@@ -18,10 +15,10 @@ export class RegisterUserUseCase {
   constructor(private userRepository: UserRepository) {}
   async execute(request: createUserInterface) {
     const { userEmail, userLogin, userName, userPassword } = request;
-    const email = new UserEmail(userEmail);
-    const login = new UserLogin(userLogin);
-    const name = new UserName(userName);
-    const password = new UserPassword(userPassword);
+    const email = userEmail;
+    const login = userLogin;
+    const name =userName;
+    const password = userPassword;
 
     const user = new UserEntity({
       userName: name,

@@ -1,4 +1,4 @@
-import { UserEmail } from './../../src/application/entities/Value-Objects/user-entity-user-email';
+
 import { UserEntity } from 'src/application/entities/user.entity';
 import { UserRepository } from 'src/application/repositories/user.repository';
 
@@ -10,7 +10,8 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   async findById(userId: string): Promise<UserEntity> {
-    return this.users.find((item) => item.id === userId);
+    console.log(userId)
+    return this.users.find((item) => item.id == userId);
   }
 
   async findAll(): Promise<UserEntity[]> {
@@ -19,7 +20,7 @@ export class InMemoryUserRepository implements UserRepository {
 
   async findByEmail(email: string): Promise<UserEntity> {
     const result = await this.users.find(
-      (item) => item.props.userEmail === new UserEmail(email),
+      (item) => item.props.userEmail === email,
     );
   
     return result;
