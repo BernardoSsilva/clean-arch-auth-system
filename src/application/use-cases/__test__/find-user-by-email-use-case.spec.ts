@@ -19,7 +19,6 @@ describe('find user by email use case unit test', () => {
         createdAt: new Date(),
       }),
     ];
-    console.log(await userRepository.findAll());
     const result = await findByEmail.execute('test@email');
 
     expect(result).toBeDefined();

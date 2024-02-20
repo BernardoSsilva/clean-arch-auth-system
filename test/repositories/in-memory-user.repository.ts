@@ -21,7 +21,14 @@ export class InMemoryUserRepository implements UserRepository {
     const result = await this.users.find(
       (item) => item.props.userEmail === new UserEmail(email),
     );
-    console.log(result);
+  
     return result;
+  }
+
+  async update(userEntity: UserEntity, userId: string): Promise<UserEntity> {
+    const user = this.users.find((item) => item.id === userId);
+    user[user.id] = userEntity;
+
+    return user
   }
 }
