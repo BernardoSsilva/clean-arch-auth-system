@@ -18,6 +18,10 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   async findByEmail(email: string): Promise<UserEntity> {
-    return this.users.find((item) => item._userEmail == new UserEmail(email));
+    const result = await this.users.find(
+      (item) => item.props.userEmail === new UserEmail(email),
+    );
+    console.log(result);
+    return result;
   }
 }
