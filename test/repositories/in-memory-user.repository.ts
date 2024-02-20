@@ -11,4 +11,8 @@ export class InMemoryUserRepository implements UserRepository {
   async findById(userId: string): Promise<UserEntity> {
     return this.users.find((item) => item.id === userId);
   }
+
+  async findAll():Promise<UserEntity[]>{
+    return this.users
+  }
 }
