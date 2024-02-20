@@ -6,6 +6,7 @@ import { FindUserByIdUseCase } from '../../application/use-cases/find-user-by-id
 import { FindAllUsersUseCase } from '../../application/use-cases/find-all-users-use-case';
 import { FindUserByEmailUseCase } from '../../application/use-cases/find-user-by-email-use-case';
 import { UpdateUserUseCase } from '../../application/use-cases/update-user-use-case';
+import { DeleteUserUseCase } from '../../application/use-cases/delete-user-use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -15,7 +16,8 @@ import { UpdateUserUseCase } from '../../application/use-cases/update-user-use-c
     FindUserByIdUseCase,
     FindAllUsersUseCase,
     FindUserByEmailUseCase,
-    UpdateUserUseCase
+    UpdateUserUseCase,
+    DeleteUserUseCase,
   ],
 })
 export class HttpModule {}

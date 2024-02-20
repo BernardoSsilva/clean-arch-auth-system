@@ -59,7 +59,6 @@ export class PrismaUserRepository implements UserRepository {
       where: { userId },
     });
 
-
     const newUserData = await this.prisma.user.update({
       where: { userId: editedUser.userId },
       data: {
@@ -71,10 +70,10 @@ export class PrismaUserRepository implements UserRepository {
     });
     return newUserData as unknown as UserEntity;
   }
-  async delete(id: string): Promise<void> {
-    const result = await this.prisma.user.delete({
-      where: { userId: id },
+  async delete(id): Promise<void> {
+    const { userId } = id;
+    await this.prisma.user.delete({
+      where: { userId },
     });
-    return;
   }
 }
