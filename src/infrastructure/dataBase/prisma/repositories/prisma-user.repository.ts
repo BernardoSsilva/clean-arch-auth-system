@@ -1,7 +1,9 @@
+import { PartialType } from '@nestjs/mapped-types';
 import { UserEntity } from 'src/application/entities/user.entity';
 import { DataConflictError } from 'src/shared/errors/data-conflict.error';
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { PrismaService } from '../prisma.service';
+import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update.user.DTO';
 export class PrismaUserRepository implements UserRepository {
   private readonly prisma = new PrismaService();
 
@@ -53,8 +55,9 @@ export class PrismaUserRepository implements UserRepository {
     console.log(result);
     return { result } as unknown as UserEntity;
   }
-  async update(user: UserEntity, sentId): Promise<UserEntity> {
+  async update(user: UpdateUserDto, sentId): Promise<UserEntity> {
     const { userId } = sentId;
+    console.log(user);
     const editedUser = await this.prisma.user.findUnique({
       where: { userId },
     });
@@ -62,10 +65,10 @@ export class PrismaUserRepository implements UserRepository {
     const newUserData = await this.prisma.user.update({
       where: { userId: editedUser.userId },
       data: {
-        userLogin: user.userLogin._loginValue,
-        userEmail: user.userEmail._emailValue,
-        userPassword: user.userPassword._passwordValue,
-        userName: user.userName._nameValue,
+        userEmail: user.userEmail,
+        userLogin: user.userLogin,
+        userName: user.userName,
+        userPassword: user.userPassword,
       },
     });
     return newUserData as unknown as UserEntity;

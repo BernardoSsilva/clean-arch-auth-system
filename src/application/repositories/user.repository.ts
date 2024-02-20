@@ -1,3 +1,4 @@
+import { UpdateUserDto } from 'src/infrastructure/http/dtos/update.user.DTO';
 import { UserEntity } from '../entities/user.entity';
 
 export abstract class UserRepository {
@@ -8,6 +9,6 @@ export abstract class UserRepository {
 
   abstract findByEmail(email: string): Promise<UserEntity>;
 
-  abstract update(user: Partial<UserEntity>, userId: string): Promise<UserEntity>;
+  abstract update(user: UpdateUserDto, userId: string): Promise<UserEntity>;
   abstract delete(id: string): Promise<void>;
 }
