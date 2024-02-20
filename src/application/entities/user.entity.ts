@@ -12,39 +12,39 @@ export type UserProps = {
   createdAt: Date | null;
 };
 export class UserEntity extends Entity<UserProps> {
-  set _userName(content) {
+  set userName(content) {
     this.props.userName = content;
   }
 
-  get _useName(): UserName {
+  get userName(): UserName {
     return this.props.userName;
   }
 
-  set _userLogin(content) {
+  set userLogin(content) {
     this.props.userLogin = content;
   }
 
-  get _userLogin(): UserLogin {
+  get userLogin(): UserLogin {
     return this.props.userLogin;
   }
 
-  set _userEmail(content) {
+  set userEmail(content) {
     this.props.userEmail = content;
   }
 
-  get _userEmail(): UserEmail {
+  get userEmail(): UserEmail {
     return this.props.userEmail;
   }
 
-  set _userPassword(content) {
+  set userPassword(content) {
     this.props.userPassword = content;
   }
 
-  get _userPassword(): UserPassword {
+  get userPassword(): UserPassword {
     return this.props.userPassword;
   }
 
-  get _createdAt(): Date {
+  get createdAt(): Date {
     return this.props.createdAt;
   }
 }

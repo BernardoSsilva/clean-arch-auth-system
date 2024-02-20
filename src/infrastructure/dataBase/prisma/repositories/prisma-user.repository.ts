@@ -1,34 +1,74 @@
 import { UserEntity } from 'src/application/entities/user.entity';
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { PrismaService } from '../prisma.service';
-import { CreateUserDto } from 'src/infrastructure/http/dtos/create.user.DTO';
+import { DataConflictError } from 'src/shared/errors/data-conflict.error';
 
 export class PrismaUserRepository implements UserRepository {
-  constructor(private prismaService: PrismaService) {}
+  private readonly prisma = new PrismaService();
 
   async create(user: UserEntity): Promise<void> {
-    await this.prismaService.user.create({
+    const { userEmail, userLogin, userName, userPassword } = user;
+
+    const userExists = await this.prisma.user.findMany({
+      where: {
+        OR: [
+          {
+            userEmail: userEmail._emailValue,
+            userLogin: userLogin._loginValue,
+          },
+        ],
+      },
+    });
+
+    if (userExists.length > 0) {
+      throw new DataConflictError('user params already in uses');
+    }
+    const result = await this.prisma.user.create({
       data: {
-        userEmail: user._userEmail._emailValue,
-        userLogin: user._userLogin._loginValue,
-        userName: user._userName._userName,
-        userPassword: user._userPassword._passwordValue,
+        userEmail: userEmail._emailValue,
+        userLogin: userLogin._loginValue,
+        userName: userName._nameValue,
+        userPassword: userPassword._passwordValue,
       },
     });
   }
   async findById(userId: string): Promise<UserEntity> {
-    throw new Error('Method not implemented.');
+    const result = await this.prisma.user.findUnique({
+      where: { userId },
+    });
+    console.log(result);
+    return { result } as unknown as UserEntity;
   }
   async findAll(): Promise<UserEntity[]> {
-    throw new Error('Method not implemented.');
+    const result = await this.prisma.user.findMany();
+    return result as unknown as UserEntity[];
   }
+
   async findByEmail(email: string): Promise<UserEntity> {
-    throw new Error('Method not implemented.');
+    const result = await this.prisma.user.findUnique({
+      where: { userEmail: email },
+    });
+    return result as unknown as UserEntity;
   }
   async update(user: UserEntity, userId: string): Promise<UserEntity> {
-    throw new Error('Method not implemented.');
+    const editedUser = await this.prisma.user.findUnique({
+      where: { userId },
+    });
+    const newUserData = await this.prisma.user.update({
+      where: { userId: editedUser.userId },
+      data: {
+        userEmail: user.userEmail._emailValue,
+        userLogin: user.userLogin._loginValue,
+        userName: user.userName._nameValue,
+        userPassword: user.userPassword._passwordValue,
+      },
+    });
+    return newUserData as unknown as UserEntity;
   }
   async delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    const result = await this.prisma.user.delete({
+      where: { userId: id },
+    });
+    return;
   }
 }

@@ -1,10 +1,10 @@
 import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
 
 export class UserName {
-  private readonly value: string;
+  private readonly nameValue: string;
 
-  get _value():string{
-    return this.value
+  get _nameValue():string{
+    return this.nameValue
   }
   private validateValue(value: string): boolean {
     return value !== null&&value.length > 0 && typeof value === 'string';
@@ -15,6 +15,6 @@ export class UserName {
     if(!nameValueIsValid){
         throw new InvalidFieldError('Invalid user name');
     }
-    this.value = value
+    this.nameValue = value
   }
 }

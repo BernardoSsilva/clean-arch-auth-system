@@ -4,6 +4,7 @@ import { UserEntity } from '../entities/user.entity';
 import { UserName } from '../entities/Value-Objects/user-entity-user-name';
 import { UserPassword } from '../entities/Value-Objects/user-entity-user-password';
 import { UserRepository } from '../repositories/user.repository';
+import { Injectable } from '@nestjs/common';
 
 export interface createUserInterface {
   userEmail: string;
@@ -12,6 +13,7 @@ export interface createUserInterface {
   userPassword: string;
 }
 
+@Injectable()
 export class RegisterUserUseCase {
   constructor(private userRepository: UserRepository) {}
   async execute(request: createUserInterface) {
@@ -30,7 +32,7 @@ export class RegisterUserUseCase {
     });
 
     await this.userRepository.create(user);
-    
+
     return {
       user,
     };

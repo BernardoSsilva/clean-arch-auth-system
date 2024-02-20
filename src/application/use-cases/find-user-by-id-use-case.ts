@@ -1,11 +1,12 @@
-import { NotFoundError } from '../../shared/errors/not-found.error';
+import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../repositories/user.repository';
 
+@Injectable()
 export class FindUserByIdUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(userId: string) {
-    const user = await this.userRepository.findById(userId);;
-    return { user };
+    return await this.userRepository.findById(userId);;
+     
   }
 }
