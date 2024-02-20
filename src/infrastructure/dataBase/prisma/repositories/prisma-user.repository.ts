@@ -31,6 +31,8 @@ export class PrismaUserRepository implements UserRepository {
         userPassword: userPassword._passwordValue,
       },
     });
+
+    console.log(result);
   }
   async findById(userId: string): Promise<UserEntity> {
     const result = await this.prisma.user.findUnique({
