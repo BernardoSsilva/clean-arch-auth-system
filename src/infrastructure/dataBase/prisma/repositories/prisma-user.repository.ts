@@ -1,7 +1,7 @@
 import { UserEntity } from 'src/application/entities/user.entity';
+import { DataConflictError } from 'src/shared/errors/data-conflict.error';
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { PrismaService } from '../prisma.service';
-import { DataConflictError } from 'src/shared/errors/data-conflict.error';
 
 export class PrismaUserRepository implements UserRepository {
   private readonly prisma = new PrismaService();
@@ -46,11 +46,13 @@ export class PrismaUserRepository implements UserRepository {
     return result as unknown as UserEntity[];
   }
 
-  async findByEmail(email: string): Promise<UserEntity> {
+  async findByEmail(sentEmail): Promise<UserEntity> {
+    const { userEmail } = sentEmail;
     const result = await this.prisma.user.findUnique({
-      where: { userEmail: email },
+      where: { userEmail },
     });
-    return result as unknown as UserEntity;
+    console.log(result);
+    return { result } as unknown as UserEntity;
   }
   async update(user: UserEntity, userId: string): Promise<UserEntity> {
     const editedUser = await this.prisma.user.findUnique({
