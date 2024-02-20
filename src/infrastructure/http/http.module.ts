@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './controllers/user.controller';
-import { RegisterUserUseCase } from 'src/application/use-cases/register-user-use-case';
+import { RegisterUserUseCase } from '../../application/use-cases/register-user-use-case';
 import { DatabaseModule } from '../dataBase/database.module';
-import { FindUserByIdUseCase } from 'src/application/use-cases/find-user-by-id-use-case';
-import { FindAllUsersUseCase } from 'src/application/use-cases/find-all-users-use-case';
-import { FindUserByEmailUseCase } from 'src/application/use-cases/find-user-by-email-use-case';
+import { FindUserByIdUseCase } from '../../application/use-cases/find-user-by-id-use-case';
+import { FindAllUsersUseCase } from '../../application/use-cases/find-all-users-use-case';
+import { FindUserByEmailUseCase } from '../../application/use-cases/find-user-by-email-use-case';
+import { UpdateUserUseCase } from '../../application/use-cases/update-user-use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -14,6 +15,7 @@ import { FindUserByEmailUseCase } from 'src/application/use-cases/find-user-by-e
     FindUserByIdUseCase,
     FindAllUsersUseCase,
     FindUserByEmailUseCase,
+    UpdateUserUseCase
   ],
 })
 export class HttpModule {}

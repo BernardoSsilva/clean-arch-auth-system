@@ -4,7 +4,7 @@ import { UserRepository } from '../repositories/user.repository';
 @Injectable()
 export class UpdateUserUseCase {
   constructor(private userRepository: UserRepository) {}
-  async execute(user: UserEntity, userId: string) {
+  async execute(user: Partial<UserEntity>, userId: string) {
     return await this.userRepository.update(user, userId);
   }
 }

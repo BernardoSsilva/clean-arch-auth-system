@@ -1,4 +1,4 @@
-import { InvalidFieldError } from "../../../shared/errors/invalid-field.error";
+import { InvalidFieldError } from '../../../shared/errors/invalid-field.error';
 
 export class UserEmail {
   private readonly emailValue: string;
@@ -9,6 +9,7 @@ export class UserEmail {
   private validateEmail(emailValue: string): boolean {
     return (
       emailValue !== null &&
+      emailValue !== undefined &&
       emailValue.length >= 5 &&
       typeof emailValue === 'string'
     );
