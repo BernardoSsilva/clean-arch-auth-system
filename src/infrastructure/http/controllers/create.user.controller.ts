@@ -12,7 +12,7 @@ import { DeleteUserUseCase } from 'src/application/use-cases/delete-user-use-cas
 export class UserController {
   constructor(
     private registerUserUseCase: RegisterUserUseCase,
-    private findUserByIdUseCase: FindUserByIdUseCase,
+   
     private findAllUsersUseCase: FindAllUsersUseCase,
     private findUserByEmailUseCase: FindUserByEmailUseCase,
     private updateUserUseCase: UpdateUserUseCase,
@@ -24,11 +24,7 @@ export class UserController {
     return {};
   }
 
-  @Get('/:id')
-  async findById(@Param('id') id: string) {
-    return await this.findUserByIdUseCase.execute(id);
-  }
-
+ 
   @Get()
   async findAll() {
     return await this.findAllUsersUseCase.execute();

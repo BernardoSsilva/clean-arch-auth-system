@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './controllers/user.controller';
+import { UserController } from './controllers/create.user.controller';
 import { RegisterUserUseCase } from '../../application/use-cases/register-user-use-case';
 import { DatabaseModule } from '../dataBase/database.module';
 import { FindUserByIdUseCase } from '../../application/use-cases/find-user-by-id-use-case';
