@@ -2,7 +2,7 @@ import { UserEntity } from '../entities/user.entity';
 
 export abstract class UserRepository {
   abstract create(user: UserEntity): Promise<void>;
-  abstract findById(userId: string): Promise<UserEntity>;
+ /*  abstract findById(userId: string): Promise<UserEntity>;
 
   abstract findAllUsers(): Promise<UserEntity[]>;
 
@@ -10,5 +10,5 @@ export abstract class UserRepository {
 
   abstract update(user: UserEntity): Promise<void>;
 
-  abstract delete(id: string): Promise<void>;
+  abstract delete(id: string): Promise<void>; */
 }

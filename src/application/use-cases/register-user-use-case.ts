@@ -3,6 +3,7 @@ import { UserEmail } from './../entities/Value-Objects/user-entity-user-email';
 import { UserEntity } from '../entities/user.entity';
 import { UserName } from '../entities/Value-Objects/user-entity-user-name';
 import { UserPassword } from '../entities/Value-Objects/user-entity-user-password';
+import { UserRepository } from '../repositories/user.repository';
 
 export interface createUserInterface {
   userEmail: string;
@@ -12,7 +13,8 @@ export interface createUserInterface {
 }
 
 export class RegisterUserUseCase {
-  async execute(request: createUserInterface): Promise<UserEntity> {
+  constructor(private userRepository: UserRepository) {}
+  async execute(request: createUserInterface) {
     const { userEmail, userLogin, userName, userPassword } = request;
     const email = new UserEmail(userEmail);
     const login = new UserLogin(userLogin);
@@ -27,6 +29,10 @@ export class RegisterUserUseCase {
       createdAt: new Date(),
     });
 
-    return user
+    await this.userRepository.create(user);
+    
+    return {
+      user,
+    };
   }
 }
