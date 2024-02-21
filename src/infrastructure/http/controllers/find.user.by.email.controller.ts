@@ -1,0 +1,11 @@
+import { Controller, Get, Param } from '@nestjs/common';
+import { FindUserByEmailUseCase } from 'src/application/use-cases/find-user-by-email-use-case';
+
+@Controller('/user/email')
+export class FindUserByEmailController {
+  constructor(private findUserByEmailUseCase: FindUserByEmailUseCase) {}
+  @Get('email/:userEmail')
+  async findByEmail(@Param() userEmail: string) {
+    return await this.findUserByEmailUseCase.execute(userEmail);
+  }
+}

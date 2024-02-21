@@ -20,14 +20,7 @@ export class CreateUserController {
     return {};
   }
 
- 
- 
-
-  @Get('email/:userEmail')
-  async findByEmail(@Param() userEmail: string) {
-    return await this.findUserByEmailUseCase.execute(userEmail);
-  }
-
+  
   @Patch('updateUser/:userId')
   async updateUser( @Body() userData: UpdateUserDto, @Param() userId) {
     return await this.updateUserUseCase.execute(userData, userId);
