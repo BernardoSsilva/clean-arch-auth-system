@@ -13,14 +13,12 @@ export class PrismaUserRepository implements UserRepository {
   constructor(private prisma: PrismaService) {}
 
   async create(user: UserEntity): Promise<void> {
-    const { userEmail, userLogin } = user;
-
     const userExists = await this.prisma.user.findMany({
       where: {
         OR: [
           {
-            userEmail: userEmail,
-            userLogin: userLogin,
+            userEmail: user.userEmail,
+            userLogin: user.userLogin,
           },
         ],
       },
@@ -35,10 +33,12 @@ export class PrismaUserRepository implements UserRepository {
       data: raw,
     });
   }
-  async findById(userId: string): Promise<UserEntity> {
+  async findById(id: string): Promise<UserEntity> {
+  
     const result = await this.prisma.user.findUnique({
-      where: { userId },
+      where: { userId: id },
     });
+
     return PrismaMapper.toDomain(result);
   }
   async findAll(): Promise<UserEntity[]> {
@@ -47,11 +47,10 @@ export class PrismaUserRepository implements UserRepository {
   }
 
   async findByEmail(sentEmail): Promise<UserEntity> {
-    const { userEmail } = sentEmail;
     const result = await this.prisma.user.findUnique({
-      where: { userEmail },
+      where: { userEmail: sentEmail },
     });
-    console.log(result);
+
     return PrismaMapper.toDomain(result);
   }
   async update(user: UpdateUserDto, sentId): Promise<UserEntity> {

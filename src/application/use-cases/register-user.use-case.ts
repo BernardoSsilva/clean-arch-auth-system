@@ -24,11 +24,6 @@ export class RegisterUserUseCase {
       createdAt: new Date(),
     });
 
-    const userExists = await this.userRepository.findByEmail(userEmail);
-    if (userExists) {
-      throw new DataConflictError('User exists');
-    }
-
     await this.userRepository.create(user);
 
     return {

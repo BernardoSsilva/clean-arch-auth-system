@@ -8,6 +8,7 @@ export class FindUserByIdController {
   @Get('/:id')
   async findById(@Param('id') id: string) {
     const user = await this.findUserByIdUseCase.execute(id);
+    console.log(user)
     return UserPresenter.toHttp(user)
   }
 }

@@ -43,7 +43,7 @@ export class UserEntity extends Entity<UserProps> {
   get createdAt(): Date {
     return this.props.createdAt;
   }
-  validate()
+  validate();
 
   async validate(): Promise<string[] | null> {
     const errors: string[] = [];
