@@ -1,3 +1,4 @@
+import { promises } from 'dns';
 import { UpdateUserDto } from '../../infrastructure/http/dtos/update-user.DTO';
 import { UserEntity } from '../entities/user.entity';
 
@@ -11,4 +12,6 @@ export abstract class UserRepository {
 
   abstract update(user: UserEntity|UpdateUserDto, userId: string): Promise<UserEntity>;
   abstract delete(id: string): Promise<void>;
+
+  abstract authenticate(userEmail:string, userPassword:string):Promise<boolean>
 }

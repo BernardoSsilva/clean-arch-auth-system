@@ -1,7 +1,6 @@
+import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../../application/repositories/user.repository';
 import { NotFoundError } from '../../shared/errors/not-found.error';
-import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthUserUseCase {
@@ -12,7 +11,7 @@ export class AuthUserUseCase {
       throw new NotFoundError('User not found');
     }
 
-    const equalsPasswords = await bcrypt.compareSync(password, user.userPassword)
+    const equalsPasswords = (password === user.userPassword)
     if (!equalsPasswords) {
       throw new NotFoundError('Invalid password');
     }

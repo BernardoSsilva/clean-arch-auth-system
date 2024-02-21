@@ -5,11 +5,11 @@ import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.
 import { PrismaService } from '../prisma.service';
 import { PrismaMapper } from '../mappers/prisma.mapper';
 import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+import { NotFoundError } from '../../../../shared/errors/not-found.error';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
-  // private readonly prisma = new PrismaService();
-
   constructor(private prisma: PrismaService) {}
 
   async create(user: UserEntity): Promise<void> {
@@ -34,7 +34,6 @@ export class PrismaUserRepository implements UserRepository {
     });
   }
   async findById(id: string): Promise<UserEntity> {
-  
     const result = await this.prisma.user.findUnique({
       where: { userId: id },
     });
@@ -79,5 +78,27 @@ export class PrismaUserRepository implements UserRepository {
     await this.prisma.user.delete({
       where: { userId },
     });
+  }
+
+  async authenticate(
+    userEmail: string,
+    userPassword: string,
+  ): Promise<boolean> {
+    const user = await this.prisma.user.findUnique({
+      where: { userEmail },
+    });
+
+    if (!user) {
+      throw new NotFoundError('user not found');
+    }
+    const validatePassword = await bcrypt.compareSync(
+      userPassword,
+      user.userPassword,
+    );
+
+    if (validatePassword) {
+      return true;
+    }
+    return false;
   }
 }

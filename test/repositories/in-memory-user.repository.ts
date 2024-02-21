@@ -1,6 +1,6 @@
-
 import { UserEntity } from 'src/application/entities/user.entity';
 import { UserRepository } from 'src/application/repositories/user.repository';
+import * as bcrypt from 'bcrypt';
 
 export class InMemoryUserRepository implements UserRepository {
   public users: UserEntity[] = [];
@@ -10,7 +10,7 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   async findById(userId: string): Promise<UserEntity> {
-    console.log(userId)
+    console.log(userId);
     return this.users.find((item) => item.id == userId);
   }
 
@@ -22,7 +22,7 @@ export class InMemoryUserRepository implements UserRepository {
     const result = await this.users.find(
       (item) => item.props.userEmail === email,
     );
-  
+
     return result;
   }
 
@@ -30,11 +30,24 @@ export class InMemoryUserRepository implements UserRepository {
     const user = this.users.find((item) => item.id === userId);
     user[user.id] = userEntity;
 
-    return user
+    return user;
   }
 
-  async delete(userId:string):Promise<void>{
-    const itemIndex = this.users.findIndex((item) =>item.id === userId)
-    this.users.splice(itemIndex)
+  async delete(userId: string): Promise<void> {
+    const itemIndex = this.users.findIndex((item) => item.id === userId);
+    this.users.splice(itemIndex);
+  }
+
+  async authenticate(
+    userEmail: string,
+    userPassword: string,
+  ): Promise<boolean> {
+    const result = await this.users.find(
+      (item) => item.props.userEmail === userEmail,
+    );
+
+    if (userPassword === result.userPassword) {
+      return true;
+    } else return false;
   }
 }
