@@ -20,11 +20,7 @@ export class CreateUserController {
     return {};
   }
 
-  
-  @Patch('updateUser/:userId')
-  async updateUser( @Body() userData: UpdateUserDto, @Param() userId) {
-    return await this.updateUserUseCase.execute(userData, userId);
-  }
+
 
   @Delete("delete/:userId")
   async deleteUser(@Param() userId){
