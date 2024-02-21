@@ -31,22 +31,19 @@ export class PrismaUserRepository implements UserRepository {
     }
 
     const raw = PrismaMapper.toPrisma(user);
-    const result = await this.prisma.user.create({
+    await this.prisma.user.create({
       data: raw,
     });
-
-    console.log(result);
   }
   async findById(userId: string): Promise<UserEntity> {
     const result = await this.prisma.user.findUnique({
       where: { userId },
     });
-    console.log(result);
-    return { result } as unknown as UserEntity;
+    return PrismaMapper.toDomain(result);
   }
   async findAll(): Promise<UserEntity[]> {
-    const result = await this.prisma.user.findMany();
-    return result as unknown as UserEntity[];
+    const results = await this.prisma.user.findMany();
+    return results.map((result) => PrismaMapper.toDomain(result));
   }
 
   async findByEmail(sentEmail): Promise<UserEntity> {
@@ -55,7 +52,7 @@ export class PrismaUserRepository implements UserRepository {
       where: { userEmail },
     });
     console.log(result);
-    return { result } as unknown as UserEntity;
+    return PrismaMapper.toDomain(result);
   }
   async update(user: UpdateUserDto, sentId): Promise<UserEntity> {
     const { userId } = sentId;
@@ -67,7 +64,7 @@ export class PrismaUserRepository implements UserRepository {
       },
     });
 
-    const newUserData = await this.prisma.user.update({
+    const result = await this.prisma.user.update({
       where: { userId: editedUser.userId },
       data: {
         userEmail: user.userEmail,
@@ -76,11 +73,11 @@ export class PrismaUserRepository implements UserRepository {
         userPassword: user.userPassword,
       },
     });
-    return newUserData as unknown as UserEntity;
+    return PrismaMapper.toDomain(result);
   }
   async delete(id): Promise<void> {
     const { userId } = id;
-    const deletedUser = await this.prisma.user.delete({
+    await this.prisma.user.delete({
       where: { userId },
     });
   }

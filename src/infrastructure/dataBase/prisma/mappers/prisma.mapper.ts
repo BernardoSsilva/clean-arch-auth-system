@@ -10,7 +10,7 @@ export class PrismaMapper {
     };
   }
 
- /*  static toDomain(user: PrismaUser): UserEntity {
-    return new UserEntity();
-  } */
+  static toDomain(user: PrismaUser): UserEntity {
+    return new UserEntity(user);
+  }
 }
