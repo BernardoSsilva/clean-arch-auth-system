@@ -1,4 +1,4 @@
-import { RegisterUserUseCase } from '../register-user-use-case';
+import { RegisterUserUseCase } from '../register-user.use-case';
 import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
 
 describe('Create user use case unit tests', () => {

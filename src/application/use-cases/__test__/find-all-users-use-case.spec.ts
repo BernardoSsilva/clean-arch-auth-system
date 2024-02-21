@@ -1,6 +1,6 @@
 import { UserEntity } from '../../../application/entities/user.entity';
 import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
-import { FindAllUsersUseCase } from '../find-all-users-use-case';
+import { FindAllUsersUseCase } from '../find-all-users.use-case';
 
 describe('Find all users use case unit test', () => {
   it('Should be able to find all user', async () => {

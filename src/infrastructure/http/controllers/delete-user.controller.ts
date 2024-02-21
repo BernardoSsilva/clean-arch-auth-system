@@ -1,5 +1,5 @@
 import { Controller, Delete, Param } from '@nestjs/common';
-import { DeleteUserUseCase } from '../../../application/use-cases/delete-user-use-case';
+import { DeleteUserUseCase } from '../../../application/use-cases/delete-user.use-case';
 
 @Controller('/user/delete')
 export class DeleteUserController {

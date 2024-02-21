@@ -1,6 +1,6 @@
 import { Body, Controller, Param, Patch } from '@nestjs/common';
-import { UpdateUserUseCase } from '../../../application/use-cases/update-user-use-case';
-import { UpdateUserDto } from '../dtos/update.user.DTO';
+import { UpdateUserUseCase } from '../../../application/use-cases/update-user.use-case';
+import { UpdateUserDto } from '../dtos/update-user.DTO';
 
 @Controller('/user/update-user')
 export class UpdateUserController {

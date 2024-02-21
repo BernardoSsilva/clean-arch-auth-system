@@ -1,5 +1,5 @@
 import { Controller, Get } from "@nestjs/common";
-import { FindAllUsersUseCase } from "../../../application/use-cases/find-all-users-use-case";
+import { FindAllUsersUseCase } from "../../../application/use-cases/find-all-users.use-case";
 
 @Controller("/users/get/all")
 export class FindAllUsersController{

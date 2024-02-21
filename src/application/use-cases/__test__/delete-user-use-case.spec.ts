@@ -1,6 +1,6 @@
 import { UserEntity } from '../../../application/entities/user.entity';
 import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
-import { DeleteUserUseCase } from '../delete-user-use-case';
+import { DeleteUserUseCase } from '../delete-user.use-case';
 
 describe('Delete user use case unit test', () => {
   const userRepository = new InMemoryUserRepository();
