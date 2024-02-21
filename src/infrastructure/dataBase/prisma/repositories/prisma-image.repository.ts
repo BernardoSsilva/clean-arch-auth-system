@@ -36,4 +36,12 @@ export class PrismaImageRepository {
 
     return { newImage };
   }
+
+  async findById(imageId: string) {
+    const image = await this.prisma.profileImage.findUnique({
+      where: { imageId },
+    });
+
+    return PrismaImageMapper.toDomainB64(image)
+  }
 }

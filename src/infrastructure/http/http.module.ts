@@ -17,6 +17,8 @@ import { AuthUserUseCase } from 'src/application/use-cases/user/auth-user.use-ca
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { CreateImageController } from './controllers/image/create-image.controller';
 import { RegisterImageUseCase } from 'src/application/use-cases/images/register-image.use-case';
+import { FindImageByIdController } from './controllers/image/find-image-by-id.controller';
+import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-image-by-id.use.case';
 
 @Module({
   imports: [
@@ -36,6 +38,7 @@ import { RegisterImageUseCase } from 'src/application/use-cases/images/register-
     DeleteUserController,
     AuthenticateUserController,
     CreateImageController,
+    FindImageByIdController,
   ],
   providers: [
     RegisterUserUseCase,
@@ -47,6 +50,7 @@ import { RegisterImageUseCase } from 'src/application/use-cases/images/register-
     AuthUserUseCase,
     JwtService,
     RegisterImageUseCase,
+    FindImageByIdUseCase,
   ],
   exports: [HttpModule],
 })
