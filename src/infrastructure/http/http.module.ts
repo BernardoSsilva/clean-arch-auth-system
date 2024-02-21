@@ -8,10 +8,21 @@ import { UpdateUserUseCase } from '../../application/use-cases/update-user-use-c
 import { DatabaseModule } from '../dataBase/database.module';
 import { CreateUserController } from './controllers/create.user.controller';
 import { FindUserByIdController } from './controllers/find.user.by.id.controller';
+import { DeleteUserController } from './controllers/delete.user.controller';
+import { FindAllUsersController } from './controllers/find.all.users.controller';
+import { UpdateUserController } from './controllers/update.user.controller';
+import { FindUserByEmailController } from './controllers/find.user.by.email.controller';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [CreateUserController, FindUserByIdController],
+  controllers: [
+    CreateUserController,
+    FindUserByIdController,
+    FindAllUsersController,
+    FindUserByEmailController,
+    UpdateUserController,
+    DeleteUserController,
+  ],
   providers: [
     RegisterUserUseCase,
     FindUserByIdUseCase,
