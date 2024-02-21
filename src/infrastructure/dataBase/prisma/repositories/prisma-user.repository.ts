@@ -3,11 +3,12 @@ import { DataConflictError } from '../../../../shared/errors/data-conflict.error
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.DTO';
 import { PrismaService } from '../prisma.service';
+import { PrismaMapper } from '../mappers/prisma.mapper';
 export class PrismaUserRepository implements UserRepository {
   private readonly prisma = new PrismaService();
 
   async create(user: UserEntity): Promise<void> {
-    const { userEmail, userLogin, userName, userPassword } = user;
+    const { userEmail, userLogin } = user;
 
     const userExists = await this.prisma.user.findMany({
       where: {
@@ -23,13 +24,10 @@ export class PrismaUserRepository implements UserRepository {
     if (userExists.length > 0) {
       throw new DataConflictError('user params already in uses');
     }
+
+    const raw = PrismaMapper.toPrisma(user);
     const result = await this.prisma.user.create({
-      data: {
-        userEmail: userEmail,
-        userLogin: userLogin,
-        userName: userName,
-        userPassword: userPassword,
-      },
+      data: raw,
     });
 
     console.log(result);
@@ -59,9 +57,9 @@ export class PrismaUserRepository implements UserRepository {
 
     const editedUser = await this.prisma.user.findUnique({
       where: { userId },
-      select:{
-        userId:true
-      }
+      select: {
+        userId: true,
+      },
     });
 
     const newUserData = await this.prisma.user.update({
