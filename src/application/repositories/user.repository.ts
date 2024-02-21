@@ -1,4 +1,4 @@
-import { UpdateUserDto } from 'src/infrastructure/http/dtos/update-user.DTO';
+import { UpdateUserDto } from '@infra/http/dtos/update-user.DTO';
 import { UserEntity } from '../entities/user.entity';
 
 export abstract class UserRepository {

@@ -1,5 +1,4 @@
-import { assert } from 'console';
-import { Entity } from '../../shared/entities/entity';
+import { Entity } from '@shared/entities/entity';
 
 export type UserProps = {
   userName: string;
@@ -44,6 +43,7 @@ export class UserEntity extends Entity<UserProps> {
   get createdAt(): Date {
     return this.props.createdAt;
   }
+  validate()
 
   async validate(): Promise<string[] | null> {
     const errors: string[] = [];
