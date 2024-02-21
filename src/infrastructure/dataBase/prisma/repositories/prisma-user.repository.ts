@@ -6,7 +6,7 @@ import { UserRepository } from '../../../../application/repositories/user.reposi
 import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.DTO';
 import { DataConflictError } from '../../../../shared/errors/data-conflict.error';
 import { NotFoundError } from '../../../../shared/errors/not-found.error';
-import { PrismaMapper } from '../mappers/prisma.mapper';
+import { PrismaMapper } from '../mappers/prisma-user.mapper';
 import { PrismaService } from '../prisma.service';
 
 @Injectable()
