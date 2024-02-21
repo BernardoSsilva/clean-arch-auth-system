@@ -12,6 +12,8 @@ import { DeleteUserController } from './controllers/user/delete-user.controller'
 import { FindAllUsersController } from './controllers/user/find-all-users.controller';
 import { UpdateUserController } from './controllers/user/update-user.controller';
 import { FindUserByEmailController } from './controllers/user/find-user-by-email.controller';
+import { AuthenticateUserController } from './controllers/auth/authenticate-user.controller';
+import { AuthUserUseCase } from 'src/application/use-cases/auth-user.use-case';
 
 @Module({
   imports: [DatabaseModule],
@@ -22,6 +24,7 @@ import { FindUserByEmailController } from './controllers/user/find-user-by-email
     FindUserByEmailController,
     UpdateUserController,
     DeleteUserController,
+    AuthenticateUserController
   ],
   providers: [
     RegisterUserUseCase,
@@ -30,6 +33,7 @@ import { FindUserByEmailController } from './controllers/user/find-user-by-email
     FindUserByEmailUseCase,
     UpdateUserUseCase,
     DeleteUserUseCase,
+    AuthUserUseCase
   ],
 })
 export class HttpModule {}

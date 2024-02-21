@@ -14,7 +14,7 @@ describe('Authentication use case unit tests', () => {
     });
 
     const loginUseCase = new AuthUserUseCase(userRepository);
-    const loginSucess = await loginUseCase.execute(createdUser.user.userEmail, createdUser.user.userPassword);
-    expect(loginSucess).toBeTruthy();
+    const loginSuccess = await loginUseCase.execute(createdUser.user.userEmail, createdUser.user.userPassword);
+    expect(loginSuccess).toBeTruthy();
   });
 });

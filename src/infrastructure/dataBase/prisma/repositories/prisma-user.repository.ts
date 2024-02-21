@@ -84,6 +84,8 @@ export class PrismaUserRepository implements UserRepository {
     userEmail: string,
     userPassword: string,
   ): Promise<boolean> {
+
+    console.log(userEmail)
     const user = await this.prisma.user.findUnique({
       where: { userEmail },
     });
