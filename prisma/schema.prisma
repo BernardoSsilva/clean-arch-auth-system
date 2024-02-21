@@ -13,11 +13,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User{
-  userId String @id() @default(uuid())
-  userName String
-  userLogin String @unique()
-  userEmail String @unique()
+model User {
+  userId       String         @id() @default(uuid())
+  userName     String
+  userLogin    String         @unique()
+  userEmail    String         @unique()
   userPassword String
-  createdAt DateTime @default(now())
+  createdAt    DateTime       @default(now())
+  PorfileImage PorfileImage[]
+}
+
+model PorfileImage {
+  imageId         String @id() @default(uuid())
+  imageName       String
+  imageExtension  String
+  imageSize       Float
+  imageStoredName String
+  author          User   @relation(fields: [userId], references: [userId])
+  userId          String
+  
 }
