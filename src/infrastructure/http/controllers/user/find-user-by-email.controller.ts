@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { FindUserByEmailUseCase } from '../../../application/use-cases/find-user-by-email.use-case';
-import { UserPresenter } from '../presenters/user.presenter';
+import { FindUserByEmailUseCase } from '../../../../application/use-cases/find-user-by-email.use-case';
+import { UserPresenter } from '../../presenters/user.presenter';
 
 @Controller('/user/email')
 export class FindUserByEmailController {

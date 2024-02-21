@@ -6,12 +6,12 @@ import { FindUserByIdUseCase } from '../../application/use-cases/find-user-by-id
 import { RegisterUserUseCase } from '../../application/use-cases/register-user.use-case';
 import { UpdateUserUseCase } from '../../application/use-cases/update-user-use-case';
 import { DatabaseModule } from '../dataBase/database.module';
-import { CreateUserController } from './controllers/create-user.controller';
-import { FindUserByIdController } from './controllers/find-user-by-id.controller';
-import { DeleteUserController } from './controllers/delete-user.controller';
-import { FindAllUsersController } from './controllers/find-all-users.controller';
-import { UpdateUserController } from './controllers/update-user.controller';
-import { FindUserByEmailController } from './controllers/find-user-by-email.controller';
+import { CreateUserController } from './controllers/user/create-user.controller';
+import { FindUserByIdController } from './controllers/user/find-user-by-id.controller';
+import { DeleteUserController } from './controllers/user/delete-user.controller';
+import { FindAllUsersController } from './controllers/user/find-all-users.controller';
+import { UpdateUserController } from './controllers/user/update-user.controller';
+import { FindUserByEmailController } from './controllers/user/find-user-by-email.controller';
 
 @Module({
   imports: [DatabaseModule],

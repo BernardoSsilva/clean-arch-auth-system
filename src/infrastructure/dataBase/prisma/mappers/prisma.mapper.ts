@@ -1,12 +1,14 @@
 import { UserEntity } from '../../../../application/entities/user.entity';
 import { User as PrismaUser } from '@Prisma/client';
+import * as bcrypt from 'bcrypt';
 export class PrismaMapper {
-  static toPrisma(user: UserEntity) {
+  static async toPrisma(user: UserEntity) {
+    const password = await bcrypt.hash(user.userPassword, 10);
     return {
       userEmail: user.userEmail,
       userLogin: user.userLogin,
       userName: user.userName,
-      userPassword: user.userPassword,
+      userPassword: password,
     };
   }
 
@@ -14,3 +16,5 @@ export class PrismaMapper {
     return new UserEntity(user);
   }
 }
+
+

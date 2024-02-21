@@ -30,7 +30,7 @@ export class PrismaUserRepository implements UserRepository {
       throw new DataConflictError('user params already in uses');
     }
 
-    const raw = PrismaMapper.toPrisma(user);
+    const raw = await PrismaMapper.toPrisma(user);
     await this.prisma.user.create({
       data: raw,
     });
