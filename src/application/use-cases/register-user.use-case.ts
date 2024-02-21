@@ -15,16 +15,12 @@ export class RegisterUserUseCase {
   constructor(private userRepository: UserRepository) {}
   async execute(request: createUserInterface) {
     const { userEmail, userLogin, userName, userPassword } = request;
-    const email = userEmail;
-    const login = userLogin;
-    const name = userName;
-    const password = userPassword;
 
     const user = new UserEntity({
-      userName: name,
-      userLogin: login,
-      userEmail: email,
-      userPassword: password,
+      userName,
+      userLogin,
+      userEmail,
+      userPassword,
       createdAt: new Date(),
     });
 
