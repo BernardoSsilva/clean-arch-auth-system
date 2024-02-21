@@ -4,7 +4,7 @@ import { FindUserByEmailUseCase } from '../../../application/use-cases/find-user
 @Controller('/user/email')
 export class FindUserByEmailController {
   constructor(private findUserByEmailUseCase: FindUserByEmailUseCase) {}
-  @Get('email/:userEmail')
+  @Get(':userEmail')
   async findByEmail(@Param() userEmail: string) {
     return await this.findUserByEmailUseCase.execute(userEmail);
   }

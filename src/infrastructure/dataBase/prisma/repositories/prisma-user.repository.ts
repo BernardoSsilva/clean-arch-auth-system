@@ -1,5 +1,5 @@
-import { UserEntity } from 'src/application/entities/user.entity';
-import { DataConflictError } from 'src/shared/errors/data-conflict.error';
+import { UserEntity } from '../../../../application/entities/user.entity';
+import { DataConflictError } from '../../../../shared/errors/data-conflict.error';
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update.user.DTO';
 import { PrismaService } from '../prisma.service';
@@ -59,6 +59,9 @@ export class PrismaUserRepository implements UserRepository {
 
     const editedUser = await this.prisma.user.findUnique({
       where: { userId },
+      select:{
+        userId:true
+      }
     });
 
     const newUserData = await this.prisma.user.update({
