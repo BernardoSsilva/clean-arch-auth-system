@@ -1,5 +1,5 @@
-
 import { Injectable } from '@nestjs/common';
+import { DataConflictError } from '../../shared/errors/data-conflict.error';
 import { UserEntity } from '../entities/user.entity';
 import { UserRepository } from '../repositories/user.repository';
 
@@ -17,7 +17,7 @@ export class RegisterUserUseCase {
     const { userEmail, userLogin, userName, userPassword } = request;
     const email = userEmail;
     const login = userLogin;
-    const name =userName;
+    const name = userName;
     const password = userPassword;
 
     const user = new UserEntity({
@@ -27,6 +27,11 @@ export class RegisterUserUseCase {
       userPassword: password,
       createdAt: new Date(),
     });
+
+    const userExists = await this.userRepository.findByEmail(userEmail);
+    if (userExists) {
+      throw new DataConflictError('User exists');
+    }
 
     await this.userRepository.create(user);
 

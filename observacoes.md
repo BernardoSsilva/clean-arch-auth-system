@@ -5,3 +5,5 @@
 * estudar mappers e presenters, para que não fique como responsabilidade total do controller realizar o envio da resposta e trata-la.
 
 * cuidar com o nome dos arquivos para seguirem um padrão
+
+* tratamento de erros no use case( usuário existente, etc)

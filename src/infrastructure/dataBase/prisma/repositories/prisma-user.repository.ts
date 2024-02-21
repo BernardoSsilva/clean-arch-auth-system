@@ -4,8 +4,13 @@ import { UserRepository } from '../../../../application/repositories/user.reposi
 import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.DTO';
 import { PrismaService } from '../prisma.service';
 import { PrismaMapper } from '../mappers/prisma.mapper';
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
 export class PrismaUserRepository implements UserRepository {
-  private readonly prisma = new PrismaService();
+  // private readonly prisma = new PrismaService();
+
+  constructor(private prisma: PrismaService) {}
 
   async create(user: UserEntity): Promise<void> {
     const { userEmail, userLogin } = user;
