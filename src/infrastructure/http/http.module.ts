@@ -15,6 +15,8 @@ import { FindUserByEmailController } from './controllers/user/find-user-by-email
 import { AuthenticateUserController } from './controllers/auth/authenticate-user.controller';
 import { AuthUserUseCase } from 'src/application/use-cases/user/auth-user.use-case';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { CreateImageController } from './controllers/image/create-image.controller';
+import { RegisterImageUseCase } from 'src/application/use-cases/images/register-image.use-case';
 
 @Module({
   imports: [
@@ -33,6 +35,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
     UpdateUserController,
     DeleteUserController,
     AuthenticateUserController,
+    CreateImageController,
   ],
   providers: [
     RegisterUserUseCase,
@@ -43,7 +46,8 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
     DeleteUserUseCase,
     AuthUserUseCase,
     JwtService,
+    RegisterImageUseCase,
   ],
-  exports:[HttpModule]
+  exports: [HttpModule],
 })
 export class HttpModule {}

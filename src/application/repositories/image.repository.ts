@@ -2,7 +2,7 @@ import { ImageEntity } from "../entities/image.entity";
 
 
 export abstract class ImageRepository {
-    abstract registerImage(image:ImageEntity):void
+    abstract registerImage(image:ImageEntity, userId:string):void
 
     abstract findById(imageId:string):Promise<ImageEntity>
 

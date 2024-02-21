@@ -20,10 +20,10 @@ model User {
   userEmail    String        @unique()
   userPassword String
   createdAt    DateTime      @default(now())
-  PorfileImage PorfileImage?
+  ProfileImage ProfileImage?
 }
 
-model PorfileImage {
+model ProfileImage {
   imageId         String @id() @default(uuid())
   imageName       String
   imageExtension  String

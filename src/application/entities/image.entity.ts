@@ -3,7 +3,7 @@ import { Entity } from 'src/shared/entities/entity';
 export type ImageProps = {
   imageName: string;
   imageSize: number;
-  imageExtent: string;
+  imageExtension: string;
   imageStoredName: string;
   createdAt?: Date;
 };
@@ -24,12 +24,12 @@ export class ImageEntity extends Entity<ImageProps> {
     return this.props.imageSize;
   }
 
-  set imageExtent(value: string) {
-    this.props.imageExtent = value;
+  set imageExtension(value: string) {
+    this.props.imageExtension = value;
   }
 
-  get imageExtent(): string {
-    return this.props.imageExtent;
+  get imageExtension(): string {
+    return this.props.imageExtension;
   }
 
   set imageStoredName(value: string) {
