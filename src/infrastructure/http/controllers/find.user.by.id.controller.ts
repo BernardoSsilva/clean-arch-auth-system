@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { FindUserByIdUseCase } from 'src/application/use-cases/find-user-by-id-use-case';
+import { FindUserByIdUseCase } from '../../../application/use-cases/find-user-by-id-use-case';
 
 @Controller('user/find')
 export class FindUserByIdController {
