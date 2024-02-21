@@ -9,7 +9,7 @@ export abstract class UserRepository {
 
   abstract findByEmail(email: string): Promise<UserEntity>;
 
-  abstract update(user: UserEntity|UpdateUserDto, userId: string): Promise<UserEntity>;
+  abstract update(user: UpdateUserDto, userId: string): Promise<UserEntity>;
   abstract delete(id: string): Promise<void>;
 
   abstract authenticate(userEmail:string, userPassword:string):Promise<{ access_token: string }>

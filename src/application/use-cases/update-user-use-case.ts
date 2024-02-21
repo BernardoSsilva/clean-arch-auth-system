@@ -7,6 +7,7 @@ import { NotFoundError } from '../../shared/errors/not-found.error';
 export class UpdateUserUseCase {
   constructor(private userRepository: UserRepository) {}
   async execute(user: UpdateUserDto, userId: string) {
+    console.log(userId)
     const userExists = await this.userRepository.findById(userId);
     if(!userExists){
       throw new NotFoundError('User not found');

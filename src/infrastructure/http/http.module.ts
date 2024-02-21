@@ -14,9 +14,17 @@ import { UpdateUserController } from './controllers/user/update-user.controller'
 import { FindUserByEmailController } from './controllers/user/find-user-by-email.controller';
 import { AuthenticateUserController } from './controllers/auth/authenticate-user.controller';
 import { AuthUserUseCase } from 'src/application/use-cases/auth-user.use-case';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [
+    DatabaseModule,
+    JwtModule.register({
+      global: true,
+      secret: 'authSystem',
+      signOptions: { expiresIn: '2h' },
+    }),
+  ],
   controllers: [
     CreateUserController,
     FindUserByIdController,
@@ -24,7 +32,7 @@ import { AuthUserUseCase } from 'src/application/use-cases/auth-user.use-case';
     FindUserByEmailController,
     UpdateUserController,
     DeleteUserController,
-    AuthenticateUserController
+    AuthenticateUserController,
   ],
   providers: [
     RegisterUserUseCase,
@@ -33,7 +41,9 @@ import { AuthUserUseCase } from 'src/application/use-cases/auth-user.use-case';
     FindUserByEmailUseCase,
     UpdateUserUseCase,
     DeleteUserUseCase,
-    AuthUserUseCase
+    AuthUserUseCase,
+    JwtService,
   ],
+  exports:[HttpModule]
 })
 export class HttpModule {}

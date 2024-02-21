@@ -1,13 +1,13 @@
+import { Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 import { UserEntity } from '../../../../application/entities/user.entity';
-import { DataConflictError } from '../../../../shared/errors/data-conflict.error';
 import { UserRepository } from '../../../../application/repositories/user.repository';
 import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.DTO';
-import { PrismaService } from '../prisma.service';
-import { PrismaMapper } from '../mappers/prisma.mapper';
-import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import { DataConflictError } from '../../../../shared/errors/data-conflict.error';
 import { NotFoundError } from '../../../../shared/errors/not-found.error';
-import { JwtService } from '@nestjs/jwt';
+import { PrismaMapper } from '../mappers/prisma.mapper';
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
@@ -57,10 +57,8 @@ export class PrismaUserRepository implements UserRepository {
     return PrismaMapper.toDomain(result);
   }
   async update(user: UpdateUserDto, sentId): Promise<UserEntity> {
-    const { userId } = sentId;
-
     const editedUser = await this.prisma.user.findUnique({
-      where: { userId },
+      where: { userId: sentId },
       select: {
         userId: true,
       },
@@ -103,9 +101,17 @@ export class PrismaUserRepository implements UserRepository {
     const { userId } = user;
     const payload = { userId };
 
-    if (validatePassword) {
-      return { access_token: await this.jwtService.signAsync(payload) };
+    if (!validatePassword) {
+      throw new Error('Invalid password');
     }
-    throw new Error("Invalid password")
+
+    const expiresIn = 30 * 60 * 60 * 24;
+
+    return {
+      access_token: await this.jwtService.signAsync(payload, {
+        secret: 'user.secret',
+        expiresIn,
+      }),
+    };
   }
 }
