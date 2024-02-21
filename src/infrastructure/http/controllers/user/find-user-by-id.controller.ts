@@ -1,6 +1,6 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '../../../../infrastructure/guard/auth.guard';
-import { FindUserByIdUseCase } from '../../../../application/use-cases/find-user-by-id.use-case';
+import { FindUserByIdUseCase } from '../../../../application/use-cases/user/find-user-by-id.use-case';
 import { UserPresenter } from '../../presenters/user.presenter';
 
 @Controller('user/find')

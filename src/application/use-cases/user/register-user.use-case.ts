@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { DataConflictError } from '../../shared/errors/data-conflict.error';
-import { UserEntity } from '../entities/user.entity';
-import { UserRepository } from '../repositories/user.repository';
+import { DataConflictError } from '../../../shared/errors/data-conflict.error';
+import { UserEntity } from '../../entities/user.entity';
+import { UserRepository } from '../../repositories/user.repository';
 
 export interface createUserInterface {
   userEmail: string;

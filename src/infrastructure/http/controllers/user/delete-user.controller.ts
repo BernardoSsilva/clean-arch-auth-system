@@ -1,5 +1,5 @@
 import { Controller, Delete, Param, UseGuards } from '@nestjs/common';
-import { DeleteUserUseCase } from '../../../../application/use-cases/delete-user.use-case';
+import { DeleteUserUseCase } from '../../../../application/use-cases/user/delete-user.use-case';
 import { AuthGuard } from '../../../../infrastructure/guard/auth.guard';
 
 @Controller('/user/delete')

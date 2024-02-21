@@ -1,5 +1,5 @@
-import { UserEntity } from '../../../application/entities/user.entity';
-import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
+import { UserEntity } from '../../../entities/user.entity';
+import { InMemoryUserRepository } from '../../../../../test/repositories/in-memory-user.repository';
 import { FindAllUsersUseCase } from '../find-all-users.use-case';
 
 describe('Find all users use case unit test', () => {

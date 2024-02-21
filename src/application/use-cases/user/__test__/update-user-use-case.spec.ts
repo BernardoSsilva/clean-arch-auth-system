@@ -1,5 +1,5 @@
-import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
-import { UserEntity } from '../../entities/user.entity';
+import { InMemoryUserRepository } from '../../../../../test/repositories/in-memory-user.repository';
+import { UserEntity } from '../../../entities/user.entity';
 import { UpdateUserUseCase } from '../update-user-use-case';
 
 describe('Update user use case unit test', () => {

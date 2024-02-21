@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { NotFoundError } from '../../shared/errors/not-found.error';
-import { UserRepository } from '../repositories/user.repository';
+import { NotFoundError } from '../../../shared/errors/not-found.error';
+import { UserRepository } from '../../repositories/user.repository';
 @Injectable()
 export class DeleteUserUseCase {
   constructor(private userRepository: UserRepository) {}

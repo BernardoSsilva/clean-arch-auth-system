@@ -1,5 +1,5 @@
 import { Body, Controller, Param, Patch, UseGuards } from '@nestjs/common';
-import { UpdateUserUseCase } from '../../../../application/use-cases/update-user-use-case';
+import { UpdateUserUseCase } from '../../../../application/use-cases/user/update-user-use-case';
 import { UpdateUserDto } from '../../dtos/update-user.DTO';
 import { UserPresenter } from '../../presenters/user.presenter';
 import { AuthGuard } from '../../../../infrastructure/guard/auth.guard';
