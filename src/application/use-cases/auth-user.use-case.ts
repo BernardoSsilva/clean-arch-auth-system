@@ -13,7 +13,7 @@ export class AuthUserUseCase {
     if (!user) {
       throw new NotFoundError('User not found');
     }
-    console.log(userPassword, user.userPassword)
+
     const equalsPasswords = bcrypt.compareSync(userPassword, user.userPassword)
     if (!equalsPasswords) {
       throw new NotFoundError('Invalid password');

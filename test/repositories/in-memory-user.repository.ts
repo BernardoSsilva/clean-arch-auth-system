@@ -1,16 +1,15 @@
 import { UserEntity } from 'src/application/entities/user.entity';
 import { UserRepository } from 'src/application/repositories/user.repository';
-import * as bcrypt from 'bcrypt';
 
 export class InMemoryUserRepository implements UserRepository {
   public users: UserEntity[] = [];
+
 
   async create(user: UserEntity) {
     this.users.push(user);
   }
 
   async findById(userId: string): Promise<UserEntity> {
-    console.log(userId);
     return this.users.find((item) => item.id == userId);
   }
 
@@ -41,13 +40,16 @@ export class InMemoryUserRepository implements UserRepository {
   async authenticate(
     userEmail: string,
     userPassword: string,
-  ): Promise<boolean> {
+  ): Promise<{ access_token: string }> {
     const result = await this.users.find(
       (item) => item.props.userEmail === userEmail,
     );
 
+    const payload = result.id
     if (userPassword === result.userPassword) {
-      return true;
-    } else return false;
+      return { access_token: payload };
+    } else {
+      throw new Error("Invalid password");
+    };
   }
 }

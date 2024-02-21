@@ -7,10 +7,14 @@ import { PrismaMapper } from '../mappers/prisma.mapper';
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { NotFoundError } from '../../../../shared/errors/not-found.error';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class PrismaUserRepository implements UserRepository {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private jwtService: JwtService,
+  ) {}
 
   async create(user: UserEntity): Promise<void> {
     const userExists = await this.prisma.user.findMany({
@@ -83,9 +87,7 @@ export class PrismaUserRepository implements UserRepository {
   async authenticate(
     userEmail: string,
     userPassword: string,
-  ): Promise<boolean> {
-
-    console.log(userEmail)
+  ): Promise<{ access_token: string }> {
     const user = await this.prisma.user.findUnique({
       where: { userEmail },
     });
@@ -98,9 +100,12 @@ export class PrismaUserRepository implements UserRepository {
       user.userPassword,
     );
 
+    const { userId } = user;
+    const payload = { userId };
+
     if (validatePassword) {
-      return true;
+      return { access_token: await this.jwtService.signAsync(payload) };
     }
-    return false;
+    throw new Error("Invalid password")
   }
 }
