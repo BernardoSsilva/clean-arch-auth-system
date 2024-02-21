@@ -18,7 +18,9 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { CreateImageController } from './controllers/image/create-image.controller';
 import { RegisterImageUseCase } from 'src/application/use-cases/images/register-image.use-case';
 import { FindImageByIdController } from './controllers/image/find-image-by-id.controller';
-import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-image-by-id.use.case';
+import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-image-by-id.use-case';
+import { FindAllImagesController } from './controllers/image/find-all-images.controller';
+import { FindAllImagesUseCase } from 'src/application/use-cases/images/find-all-images.use-case';
 
 @Module({
   imports: [
@@ -39,6 +41,7 @@ import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-imag
     AuthenticateUserController,
     CreateImageController,
     FindImageByIdController,
+    FindAllImagesController,
   ],
   providers: [
     RegisterUserUseCase,
@@ -51,6 +54,7 @@ import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-imag
     JwtService,
     RegisterImageUseCase,
     FindImageByIdUseCase,
+    FindAllImagesUseCase,
   ],
   exports: [HttpModule],
 })

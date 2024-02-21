@@ -42,6 +42,12 @@ export class PrismaImageRepository {
       where: { imageId },
     });
 
-    return PrismaImageMapper.toDomainB64(image)
+    return PrismaImageMapper.toDomainB64(image);
+  }
+
+  async findAll() {
+    console.log('ta aqui pelo menos');
+    const images = await this.prisma.profileImage.findMany();
+    return images.map((image) => PrismaImageMapper.toDomainB64(image));
   }
 }
