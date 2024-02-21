@@ -6,7 +6,8 @@ export class FindUserByIdUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(userId: string) {
-    return await this.userRepository.findById(userId);;
+    const user = await this.userRepository.findById(userId);
+    return user
      
   }
 }

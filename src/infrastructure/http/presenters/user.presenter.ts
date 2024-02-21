@@ -1,4 +1,4 @@
-import { UserEntity } from '@application/entities/user.entity';
+import { UserEntity } from '../../../application/entities/user.entity';
 
 export class UserPresenter {
   static toHttp(user: UserEntity) {

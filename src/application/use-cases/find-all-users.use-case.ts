@@ -7,6 +7,7 @@ export class FindAllUsersUseCase{
     constructor(private userRepository:UserRepository){}
 
     async execute():Promise<UserEntity[]>{
-        return await this.userRepository.findAll();
+        const users = await this.userRepository.findAll();
+        return users
     }
 }

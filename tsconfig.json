@@ -17,10 +17,5 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {
-      "@application/*":["./src/application/*"],
-      "@shared/*":["./src/shared/*"],
-      "@infra/*":["./src/infrastructure/*"]
-    }
   }
 }
