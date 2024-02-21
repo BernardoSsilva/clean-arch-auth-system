@@ -1,7 +1,7 @@
-import { UserEntity } from '@application/entities/user.entity';
-import { DataConflictError } from '@shared/errors/data-conflict.error';
-import { UserRepository } from '@application/repositories/user.repository';
-import { UpdateUserDto } from '@infra/http/dtos/update-user.DTO';
+import { UserEntity } from '../../../../application/entities/user.entity';
+import { DataConflictError } from '../../../../shared/errors/data-conflict.error';
+import { UserRepository } from '../../../../application/repositories/user.repository';
+import { UpdateUserDto } from '../../../../infrastructure/http/dtos/update-user.DTO';
 import { PrismaService } from '../prisma.service';
 export class PrismaUserRepository implements UserRepository {
   private readonly prisma = new PrismaService();

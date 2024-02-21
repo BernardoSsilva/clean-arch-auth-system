@@ -1,4 +1,4 @@
-import { Entity } from '@shared/entities/entity';
+import { Entity } from '../../shared/entities/entity';
 
 export type UserProps = {
   userName: string;

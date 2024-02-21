@@ -1,6 +1,6 @@
 import { UserEntity } from '../../../application/entities/user.entity';
 import { InMemoryUserRepository } from '../../../../test/repositories/in-memory-user.repository';
-import { FindUserByEmailUseCase } from '../find-user-by-email.use-case';
+import { FindUserByEmailUseCase } from '../find-user-by-email-use-case';
 
 describe('find user by email use case unit test', () => {
   const userRepository = new InMemoryUserRepository();
