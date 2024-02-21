@@ -14,13 +14,13 @@ datasource db {
 }
 
 model User {
-  userId       String         @id() @default(uuid())
+  userId       String        @id() @default(uuid())
   userName     String
-  userLogin    String         @unique()
-  userEmail    String         @unique()
+  userLogin    String        @unique()
+  userEmail    String        @unique()
   userPassword String
-  createdAt    DateTime       @default(now())
-  PorfileImage PorfileImage[]
+  createdAt    DateTime      @default(now())
+  PorfileImage PorfileImage?
 }
 
 model PorfileImage {
@@ -30,6 +30,5 @@ model PorfileImage {
   imageSize       Float
   imageStoredName String
   author          User   @relation(fields: [userId], references: [userId])
-  userId          String
-  
+  userId          String @unique
 }
