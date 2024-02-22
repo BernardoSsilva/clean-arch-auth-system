@@ -28,7 +28,7 @@ model ProfileImage {
   imageName       String
   imageExtension  String
   imageSize       Float
-  imageStoredName String
+  imageStoredName String @unique
   author          User   @relation(fields: [userId], references: [userId])
   userId          String @unique
 }

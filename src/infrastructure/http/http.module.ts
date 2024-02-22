@@ -1,4 +1,10 @@
 import { Module } from '@nestjs/common';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { FindAllImagesUseCase } from '../../application/use-cases/images/find-all-images.use-case';
+import { FindImageByIdUseCase } from '../../application/use-cases/images/find-image-by-id.use-case';
+import { FindImageByUserIdUseCase } from '../../application/use-cases/images/find-image-by-user-id.use-case';
+import { RegisterImageUseCase } from '../../application/use-cases/images/register-image.use-case';
+import { AuthUserUseCase } from '../../application/use-cases/user/auth-user.use-case';
 import { DeleteUserUseCase } from '../../application/use-cases/user/delete-user.use-case';
 import { FindAllUsersUseCase } from '../../application/use-cases/user/find-all-users.use-case';
 import { FindUserByEmailUseCase } from '../../application/use-cases/user/find-user-by-email.use-case';
@@ -6,21 +12,17 @@ import { FindUserByIdUseCase } from '../../application/use-cases/user/find-user-
 import { RegisterUserUseCase } from '../../application/use-cases/user/register-user.use-case';
 import { UpdateUserUseCase } from '../../application/use-cases/user/update-user-use-case';
 import { DatabaseModule } from '../dataBase/database.module';
+import { AuthenticateUserController } from './controllers/auth/authenticate-user.controller';
+import { CreateImageController } from './controllers/image/create-image.controller';
+import { FindAllImagesController } from './controllers/image/find-all-images.controller';
+import { FindImageByIdController } from './controllers/image/find-image-by-id.controller';
 import { CreateUserController } from './controllers/user/create-user.controller';
-import { FindUserByIdController } from './controllers/user/find-user-by-id.controller';
 import { DeleteUserController } from './controllers/user/delete-user.controller';
 import { FindAllUsersController } from './controllers/user/find-all-users.controller';
-import { UpdateUserController } from './controllers/user/update-user.controller';
 import { FindUserByEmailController } from './controllers/user/find-user-by-email.controller';
-import { AuthenticateUserController } from './controllers/auth/authenticate-user.controller';
-import { AuthUserUseCase } from 'src/application/use-cases/user/auth-user.use-case';
-import { JwtModule, JwtService } from '@nestjs/jwt';
-import { CreateImageController } from './controllers/image/create-image.controller';
-import { RegisterImageUseCase } from 'src/application/use-cases/images/register-image.use-case';
-import { FindImageByIdController } from './controllers/image/find-image-by-id.controller';
-import { FindImageByIdUseCase } from 'src/application/use-cases/images/find-image-by-id.use-case';
-import { FindAllImagesController } from './controllers/image/find-all-images.controller';
-import { FindAllImagesUseCase } from 'src/application/use-cases/images/find-all-images.use-case';
+import { FindUserByIdController } from './controllers/user/find-user-by-id.controller';
+import { UpdateUserController } from './controllers/user/update-user.controller';
+import { FindImageByUserIdController } from './controllers/image/find-image-by-user-id.controller';
 
 @Module({
   imports: [
@@ -42,6 +44,7 @@ import { FindAllImagesUseCase } from 'src/application/use-cases/images/find-all-
     CreateImageController,
     FindImageByIdController,
     FindAllImagesController,
+    FindImageByUserIdController,
   ],
   providers: [
     RegisterUserUseCase,
@@ -55,6 +58,7 @@ import { FindAllImagesUseCase } from 'src/application/use-cases/images/find-all-
     RegisterImageUseCase,
     FindImageByIdUseCase,
     FindAllImagesUseCase,
+    FindImageByUserIdUseCase,
   ],
   exports: [HttpModule],
 })
