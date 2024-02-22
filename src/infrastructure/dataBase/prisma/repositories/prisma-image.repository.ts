@@ -4,6 +4,7 @@ import { NotFoundError } from '../../../../shared/errors/not-found.error';
 import { PrismaImageMapper } from '../mappers/prisma-image.mapper';
 import { PrismaService } from '../prisma.service';
 import { ImageEntity } from './../../../../application/entities/image.entity';
+import * as fs from 'fs';
 
 @Injectable()
 export class PrismaImageRepository implements ImageRepository {
@@ -26,6 +27,8 @@ export class PrismaImageRepository implements ImageRepository {
     if (!imageExists) {
       throw new NotFoundError('Image not found');
     }
+
+    fs.unlinkSync(`/uploads/${imageExists.imageStoredName}`);
     await this.prisma.profileImage.delete({
       where: { imageId },
     });
