@@ -23,6 +23,7 @@ import { FindUserByEmailController } from './controllers/user/find-user-by-email
 import { FindUserByIdController } from './controllers/user/find-user-by-id.controller';
 import { UpdateUserController } from './controllers/user/update-user.controller';
 import { FindImageByUserIdController } from './controllers/image/find-image-by-user-id.controller';
+import { DeleteImageUseCase } from '../../application/use-cases/images/delete-image-use-case';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { FindImageByUserIdController } from './controllers/image/find-image-by-u
     FindImageByUserIdController,
   ],
   providers: [
+    DeleteImageUseCase,
     RegisterUserUseCase,
     FindUserByIdUseCase,
     FindAllUsersUseCase,

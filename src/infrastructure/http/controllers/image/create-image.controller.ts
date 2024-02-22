@@ -6,10 +6,9 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
 import { ImageEntity } from '../../../../application/entities/image.entity';
 import { RegisterImageUseCase } from '../../../../application/use-cases/images/register-image.use-case';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 
 const storage = diskStorage({
   destination: './uploads',

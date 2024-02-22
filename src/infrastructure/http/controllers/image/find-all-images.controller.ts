@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { FindAllImagesUseCase } from 'src/application/use-cases/images/find-all-images.use-case';
+import { FindAllImagesUseCase } from '../../../../application/use-cases/images/find-all-images.use-case';
 
 @Controller('/image')
 export class FindAllImagesController {
