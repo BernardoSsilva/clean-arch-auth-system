@@ -24,6 +24,7 @@ import { FindUserByIdController } from './controllers/user/find-user-by-id.contr
 import { UpdateUserController } from './controllers/user/update-user.controller';
 import { FindImageByUserIdController } from './controllers/image/find-image-by-user-id.controller';
 import { DeleteImageUseCase } from '../../application/use-cases/images/delete-image-use-case';
+import { DeleteImageController } from './controllers/image/delete-image.controller';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { DeleteImageUseCase } from '../../application/use-cases/images/delete-im
     FindImageByIdController,
     FindAllImagesController,
     FindImageByUserIdController,
+    DeleteImageController,
   ],
   providers: [
     DeleteImageUseCase,
