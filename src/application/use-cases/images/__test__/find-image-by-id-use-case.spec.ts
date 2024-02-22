@@ -19,4 +19,8 @@ describe('Find image by id use case unit test', () => {
 
     expect(result).toEqual(imageRepository.images[0]);
   });
+
+  it("Should throw an error if image is not found", async () => {
+    expect(async () => await findImage.execute("fakeId")).rejects.toThrow()
+  })
 });
