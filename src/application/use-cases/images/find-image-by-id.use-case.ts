@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ImageRepository } from 'src/application/repositories/image.repository';
+import { ImageRepository } from '../../../application/repositories/image.repository';
 
 @Injectable()
 export class FindImageByIdUseCase {

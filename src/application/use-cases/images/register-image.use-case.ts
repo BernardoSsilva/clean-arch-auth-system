@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ImageEntity } from 'src/application/entities/image.entity';
-import { ImageRepository } from 'src/application/repositories/image.repository';
+import { ImageEntity } from '../../../application/entities/image.entity';
+import { ImageRepository } from '../../../application/repositories/image.repository';
 
 @Injectable()
 export class RegisterImageUseCase {
