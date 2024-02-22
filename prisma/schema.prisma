@@ -20,7 +20,7 @@ model User {
   userEmail    String        @unique()
   userPassword String
   createdAt    DateTime      @default(now())
-  ProfileImage ProfileImage?
+  ProfileImage ProfileImage []
 }
 
 model ProfileImage {
@@ -30,5 +30,5 @@ model ProfileImage {
   imageSize       Float
   imageStoredName String @unique
   author          User   @relation(fields: [userId], references: [userId])
-  userId          String @unique
+  userId          String 
 }

@@ -8,7 +8,7 @@ export abstract class ImageRepository {
 
     abstract findAll():Promise<ImageEntity[]>
 
-    abstract findByUserId(userId:string):Promise<ImageEntity>
+    abstract findByUserId(userId:string):Promise<ImageEntity[]>
 
     abstract deleteImage(imageId:string):Promise<void>
 }

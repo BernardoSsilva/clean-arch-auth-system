@@ -3,12 +3,14 @@ import {
   Param,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { ImageEntity } from '../../../../application/entities/image.entity';
 import { RegisterImageUseCase } from '../../../../application/use-cases/images/register-image.use-case';
+import { AuthGuard } from 'src/infrastructure/guard/auth.guard';
 
 const storage = diskStorage({
   destination: './uploads',
@@ -25,6 +27,7 @@ const storage = diskStorage({
 @Controller('/image/create')
 export class CreateImageController {
   constructor(private registerImageUseCase: RegisterImageUseCase) {}
+  @UseGuards(AuthGuard)
   @Post('/:userId')
   @UseInterceptors(FileInterceptor('file', { storage }))
   async createImage(
