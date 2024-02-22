@@ -9,17 +9,15 @@ import { ImageEntity } from './../../../../application/entities/image.entity';
 @Injectable()
 export class PrismaImageRepository implements ImageRepository {
   constructor(private prisma: PrismaService) {}
-  async findByUserId(userId: string): Promise<ImageEntity[]> {
-    const images = await this.prisma.profileImage.findMany({
+  async findByUserId(userId: string): Promise<ImageEntity> {
+    const image = await this.prisma.profileImage.findUnique({
       where: { userId },
     });
 
-    if (!images) {
+    if (!image) {
       throw new NotFoundError('Image not found');
     }
-    return images.map((image) =>
-      PrismaImageMapper.toDomainB64(image),
-    ) as unknown as ImageEntity[];
+    return PrismaImageMapper.toDomainB64(image) as unknown as ImageEntity;
   }
   async deleteImage(imageId: string): Promise<void> {
     const imageExists = await this.prisma.profileImage.findUnique({
