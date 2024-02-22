@@ -12,6 +12,10 @@ export class PrismaImageRepository implements ImageRepository {
     const images = await this.prisma.profileImage.findUnique({
       where: { userId },
     });
+
+    if (!images) {
+      throw new NotFoundError('Image not found');
+    }
     return PrismaImageMapper.toDomainB64(images) as unknown as ImageEntity;
   }
   async deleteImage(imageId: string): Promise<void> {
@@ -62,12 +66,19 @@ export class PrismaImageRepository implements ImageRepository {
       where: { imageId },
     });
 
+    if (!image) {
+      throw new NotFoundError('Image not found');
+    }
+
     return PrismaImageMapper.toDomainB64(image) as unknown as ImageEntity;
   }
 
   async findAll() {
-    console.log('ta aqui pelo menos');
     const images = await this.prisma.profileImage.findMany();
+
+    if (!images) {
+      throw new NotFoundError('Images not found');
+    }
     return images.map((image) =>
       PrismaImageMapper.toDomainB64(image),
     ) as unknown as ImageEntity[];
