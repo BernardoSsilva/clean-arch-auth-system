@@ -1,4 +1,4 @@
-import { ImageEntity, ImageProps } from './../../../image.entity';
+import { ImageEntity, ImageProps } from '../image.entity';
 describe('Image entity unit test', () => {
   it('Should be able to create a new image entity ', () => {
     const imageProps: ImageProps = {

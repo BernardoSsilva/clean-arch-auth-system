@@ -1,4 +1,4 @@
-import { UserEntity, UserProps } from '../../../user.entity';
+import { UserEntity, UserProps } from '../user.entity';
 
 describe('User entity unit tests', () => {
   it('Should be able create a new user', () => {
