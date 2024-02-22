@@ -16,7 +16,11 @@ export class ImageInMemoryRepository implements ImageRepository {
     return image;
   }
   async findAll(): Promise<ImageEntity[]> {
-    return await this.images;
+    const allImages = await this.images;
+    if (allImages.length == 0) {
+      throw new NotFoundError('Images not found');
+    }
+    return allImages;
   }
   async findByUserId(userId: string): Promise<ImageEntity> {
     const image = await this.images.find((image) => image.id === userId);
