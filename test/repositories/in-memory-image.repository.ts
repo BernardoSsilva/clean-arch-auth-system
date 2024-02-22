@@ -22,12 +22,12 @@ export class ImageInMemoryRepository implements ImageRepository {
     }
     return allImages;
   }
-  async findByUserId(userId: string): Promise<ImageEntity[]> {
-    const images = await this.images.filter((image) => image.id === userId);
-    if (!images || images.length == 0) {
+  async findByUserId(userId: string): Promise<ImageEntity> {
+    const image = await this.images.find((image) => image.id === userId);
+    if (!image || image.id == null) {
       throw new NotFoundError('Images not found');
     }
-    return images;
+    return image;
   }
   async deleteImage(imageId: string): Promise<void> {
     const imageIndex = await this.images.findIndex(

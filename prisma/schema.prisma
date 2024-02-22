@@ -24,11 +24,12 @@ model User {
 }
 
 model ProfileImage {
-  imageId         String @id() @default(uuid())
+  imageId         String   @id() @default(uuid())
   imageName       String
   imageExtension  String
   imageSize       Float
-  imageStoredName String @unique
-  author          User   @relation(fields: [userId], references: [userId])
-  userId          String @unique
+  imageStoredName String   @unique
+  author          User     @relation(fields: [userId], references: [userId])
+  createdAt       DateTime @default(now())
+  userId          String   @unique
 }
