@@ -33,8 +33,6 @@ export class ImageInMemoryRepository implements ImageRepository {
     const imageIndex = await this.images.findIndex(
       (image) => image.id === imageId,
     );
-    console.log(this.images);
-    console.log(imageIndex);
     if (imageIndex < 0) {
       throw new NotFoundError('Image not found');
     }

@@ -7,7 +7,7 @@ export class FindAllImagesUseCase {
   constructor(private profileImageRepository: ImageRepository) {}
 
   async execute(): Promise<ImageEntity[]> {
-    console.log("oioi?")
+
     const images = await this.profileImageRepository.findAll();
     return images;
   }

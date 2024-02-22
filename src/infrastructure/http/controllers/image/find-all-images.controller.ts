@@ -6,7 +6,7 @@ export class FindAllImagesController {
   constructor(private findAllImagesUseCase: FindAllImagesUseCase) {}
   @Get()
   async findAll() {
-    console.log('ta aqui?');
+
     const images = await this.findAllImagesUseCase.execute();
     return images;
   }
