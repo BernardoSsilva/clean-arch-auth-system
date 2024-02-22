@@ -1,4 +1,4 @@
-import { Entity } from 'src/shared/entities/entity';
+import { Entity } from '../../shared/entities/entity';
 
 export type ImageProps = {
   imageName: string;
