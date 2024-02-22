@@ -38,17 +38,17 @@ export class PrismaImageRepository implements ImageRepository {
 
   async registerImage(image: ImageEntity, userId: string) {
     const raw = await PrismaImageMapper.toPrisma(image);
-    const userHaveImage = await this.prisma.user.findUnique({
+    const userHaveImage = await this.prisma.user.findMany({
       where: { userId },
       select: {
         ProfileImage: true,
       },
     });
 
-    if (userHaveImage.ProfileImage !== null) {
-      await this.prisma.profileImage.delete({
+    if (userHaveImage.images !== null) {
+      await this.prisma.profileImage.deleteMany({
         where: {
-          userId,
+          userId: '4f5e9310-80aa-4aaf-b82e-42780e2db95c',
         },
       });
     }

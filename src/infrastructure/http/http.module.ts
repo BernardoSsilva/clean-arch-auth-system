@@ -48,6 +48,7 @@ import { DeleteImageController } from './controllers/image/delete-image.controll
     FindAllImagesController,
     FindImageByUserIdController,
     DeleteImageController,
+    JwtService
   ],
   providers: [
     DeleteImageUseCase,
