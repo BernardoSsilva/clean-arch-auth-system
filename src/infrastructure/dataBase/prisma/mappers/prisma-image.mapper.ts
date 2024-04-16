@@ -1,5 +1,5 @@
 import { ImageEntity } from '../../../../application/entities/image.entity';
-import { ProfileImage as PrismaImage } from '@prisma/client';
+import { Images as PrismaImage } from '@prisma/client';
 import fs from 'fs';
 import { toB64Image } from '../../../../shared/utils/b64Transformer';
 

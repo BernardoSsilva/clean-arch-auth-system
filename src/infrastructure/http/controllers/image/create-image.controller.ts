@@ -6,12 +6,10 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Request } from 'express';
 import { diskStorage } from 'multer';
 import { AuthGuard } from 'src/infrastructure/guard/auth.guard';
 import { ImageEntity } from '../../../../application/entities/image.entity';
 import { RegisterImageUseCase } from '../../../../application/use-cases/images/register-image.use-case';
-import { JwtService } from '@nestjs/jwt';
 
 const storage = diskStorage({
   destination: './uploads',
@@ -29,19 +27,14 @@ const storage = diskStorage({
 export class CreateImageController {
   constructor(
     private registerImageUseCase: RegisterImageUseCase,
-    private jwtService: JwtService,
   ) {}
   @UseGuards(AuthGuard)
   @Post('/')
   @UseInterceptors(FileInterceptor('file', { storage }))
   async createImage(
     @UploadedFile() file: Express.Multer.File,
-    request: Request,
   ) {
-    const jwt = this.extractTokenFromHeader(request);
-    const decodedToken = await this.jwtService.decode(jwt);
 
-    console.log(decodedToken);
     const createImage = new ImageEntity({
       imageName: file.originalname,
       imageSize: file.size,
@@ -54,8 +47,4 @@ export class CreateImageController {
     );
   }
 
-  private extractTokenFromHeader(request: Request): string | undefined {
-    const [type, token] = request.headers.authorization?.split(' ') ?? [];
-    return type === 'Bearer' ? token : undefined;
-  }
 }

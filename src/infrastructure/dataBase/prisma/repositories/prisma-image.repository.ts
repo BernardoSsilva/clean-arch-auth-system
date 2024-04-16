@@ -10,7 +10,7 @@ import { ImageEntity } from './../../../../application/entities/image.entity';
 export class PrismaImageRepository implements ImageRepository {
   constructor(private prisma: PrismaService) {}
   async findByUserId(userId: string): Promise<ImageEntity[]> {
-    const images = await this.prisma.profileImage.findMany({
+    const images = await this.prisma.images.findMany({
       where: { userId },
     });
 
@@ -22,7 +22,7 @@ export class PrismaImageRepository implements ImageRepository {
     ) as unknown as ImageEntity[];
   }
   async deleteImage(imageId: string): Promise<void> {
-    const imageExists = await this.prisma.profileImage.findUnique({
+    const imageExists = await this.prisma.images.findUnique({
       where: { imageId },
     });
 
@@ -31,29 +31,29 @@ export class PrismaImageRepository implements ImageRepository {
     }
 
     fs.unlinkSync(`/uploads/${imageExists.imageStoredName}`);
-    await this.prisma.profileImage.delete({
+    await this.prisma.images.delete({
       where: { imageId },
     });
   }
 
   async registerImage(image: ImageEntity, userId: string) {
     const raw = await PrismaImageMapper.toPrisma(image);
-    const userHaveImage = await this.prisma.user.findMany({
+    const userHaveImages = await this.prisma.user.findMany({
       where: { userId },
       select: {
-        ProfileImage: true,
+        Images: true
       },
     });
 
-    if (userHaveImage.images !== null) {
-      await this.prisma.profileImage.deleteMany({
+    if (userHaveImages !== null) {
+      await this.prisma.images.deleteMany({
         where: {
           userId: '4f5e9310-80aa-4aaf-b82e-42780e2db95c',
         },
       });
     }
 
-    const newImage = await this.prisma.profileImage.create({
+    const newImage = await this.prisma.images.create({
       data: {
         userId,
         imageName: raw.imageName,
@@ -67,7 +67,7 @@ export class PrismaImageRepository implements ImageRepository {
   }
 
   async findById(imageId: string): Promise<ImageEntity> {
-    const image = await this.prisma.profileImage.findUnique({
+    const image = await this.prisma.images.findUnique({
       where: { imageId },
     });
 
@@ -79,7 +79,7 @@ export class PrismaImageRepository implements ImageRepository {
   }
 
   async findAll() {
-    const images = await this.prisma.profileImage.findMany();
+    const images = await this.prisma.images.findMany();
 
     if (!images) {
       throw new NotFoundError('Images not found');

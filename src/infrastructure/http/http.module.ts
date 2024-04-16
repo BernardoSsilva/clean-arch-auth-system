@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { FindAllImagesUseCase } from '../../application/use-cases/images/find-all-images.use-case';
 import { FindImageByIdUseCase } from '../../application/use-cases/images/find-image-by-id.use-case';
 import { FindImageByUserIdUseCase } from '../../application/use-cases/images/find-image-by-user-id.use-case';
@@ -48,7 +48,6 @@ import { DeleteImageController } from './controllers/image/delete-image.controll
     FindAllImagesController,
     FindImageByUserIdController,
     DeleteImageController,
-    JwtService
   ],
   providers: [
     DeleteImageUseCase,
@@ -59,7 +58,6 @@ import { DeleteImageController } from './controllers/image/delete-image.controll
     UpdateUserUseCase,
     DeleteUserUseCase,
     AuthUserUseCase,
-    JwtService,
     RegisterImageUseCase,
     FindImageByIdUseCase,
     FindAllImagesUseCase,
