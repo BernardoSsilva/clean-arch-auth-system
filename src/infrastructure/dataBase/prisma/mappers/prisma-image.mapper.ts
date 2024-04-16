@@ -1,3 +1,4 @@
+import { ProfileImage as PrismaImage } from '@prisma/client';
 import { ImageEntity } from '../../../../application/entities/image.entity';
 import { Images as PrismaImage } from '@prisma/client';
 import fs from 'fs';

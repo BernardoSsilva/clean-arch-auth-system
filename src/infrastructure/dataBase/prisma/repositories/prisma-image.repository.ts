@@ -14,12 +14,10 @@ export class PrismaImageRepository implements ImageRepository {
       where: { userId },
     });
 
-    if (!images) {
+    if (!image) {
       throw new NotFoundError('Image not found');
     }
-    return images.map((image) =>
-      PrismaImageMapper.toDomainB64(image),
-    ) as unknown as ImageEntity[];
+    return PrismaImageMapper.toDomainB64(image) as unknown as ImageEntity;
   }
   async deleteImage(imageId: string): Promise<void> {
     const imageExists = await this.prisma.images.findUnique({

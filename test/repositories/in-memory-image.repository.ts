@@ -27,7 +27,7 @@ export class ImageInMemoryRepository implements ImageRepository {
     if (!images || images.length <= 0) {
       throw new NotFoundError('Image not found');
     }
-    return images;
+    return image;
   }
   async deleteImage(imageId: string): Promise<void> {
     const imageIndex = await this.images.findIndex(
